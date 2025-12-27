@@ -11,6 +11,7 @@ public class InventoryDataAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
+            AddBuffer<PockedsBuffer>(entity);
             AddComponent<InventoryData>(entity);
         }
     }
@@ -18,8 +19,10 @@ public class InventoryDataAuthoring : MonoBehaviour
 
 public struct InventoryData : IComponentData
 {
+    public int Full;
     public int AppleCount;
     public int ActorCount;
     public int BoardCount;
     public int StoneCount;
 }
+

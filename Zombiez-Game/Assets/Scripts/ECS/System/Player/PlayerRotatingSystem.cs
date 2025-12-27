@@ -11,6 +11,7 @@ public partial struct PlayerRotatingSystem : ISystem
         state.RequireForUpdate<PlayerTag>();
     }
 
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         PlayerRotatingJob playerRotatingJob = new();

@@ -17,13 +17,6 @@ public partial struct RotateSystem : ISystem
         };
 
         state.Dependency = rotateSystemJob.ScheduleParallel(state.Dependency);
-
-        /*foreach ((CubeRotateAspect cubeRotateAspect, Entity entity)
-        in SystemAPI.Query<CubeRotateAspect>().WithAll<Cube>().WithDisabled<Stunned>().WithEntityAccess())
-        {
-            cubeRotateAspect.RotateAndMove(SystemAPI.Time.DeltaTime);
-            //cubeRotateAspect.localTransform.ValueRW = cubeRotateAspect.localTransform.ValueRO.RotateY(cubeRotateAspect.rotateSpeed.ValueRO.value * SystemAPI.Time.DeltaTime);
-        }*/
     }
 
     [BurstCompile]

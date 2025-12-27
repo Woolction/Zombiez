@@ -14,6 +14,6 @@ public readonly partial struct PlayerLookAspect : IAspect
         playerLook.ValueRW.Look.x += mouse.x;
         playerLook.ValueRW.Look.y -= mouse.y;
 
-        playerLook.ValueRW.Look.y = math.clamp(playerLook.ValueRW.Look.y, -70f, 70f);
+        playerLook.ValueRW.Look.y = math.clamp(playerLook.ValueRW.Look.y, -70f, 60f);
     }
 }

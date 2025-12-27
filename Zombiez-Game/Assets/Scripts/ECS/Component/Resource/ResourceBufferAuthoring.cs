@@ -5,16 +5,47 @@ using UnityEngine;
 
 public class ResourceBufferAuthoring : MonoBehaviour
 {
+    public GameObject[] AppleGameObjects;
+    public GameObject[] ActarGameObjects;
+    public GameObject[] BoardGameObjects;
+    public GameObject[] StoneGameObjects;
     private class Baker : Baker<ResourceBufferAuthoring>
     {
         public override void Bake(ResourceBufferAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.None);
 
-            AddBuffer<AppleBuffer>(entity);
-            AddBuffer<ActarBuffer>(entity);
-            AddBuffer<BoardBuffer>(entity);
-            AddBuffer<StoneBuffer>(entity);
+            DynamicBuffer<AppleBuffer> appleBuffers = AddBuffer<AppleBuffer>(entity);
+
+            for (int i = 0; i < authoring.AppleGameObjects.Length; i++)
+            {
+                appleBuffers.Add(
+                    new AppleBuffer() { Apple = GetEntity(authoring.AppleGameObjects[i], TransformUsageFlags.Dynamic) });
+            }
+
+            DynamicBuffer<ActarBuffer> actarBuffers = AddBuffer<ActarBuffer>(entity);
+
+            for (int i = 0; i < authoring.AppleGameObjects.Length; i++)
+            {
+                actarBuffers.Add(
+                    new ActarBuffer() { Actar = GetEntity(authoring.AppleGameObjects[i], TransformUsageFlags.Dynamic) });
+            }
+
+            DynamicBuffer<BoardBuffer> boardBuffers = AddBuffer<BoardBuffer>(entity);
+
+            for (int i = 0; i < authoring.AppleGameObjects.Length; i++)
+            {
+                boardBuffers.Add(
+                    new BoardBuffer() { Board = GetEntity(authoring.AppleGameObjects[i], TransformUsageFlags.Dynamic) });
+            }
+            
+            DynamicBuffer<StoneBuffer> stoneBuffers = AddBuffer<StoneBuffer>(entity);
+
+            for (int i = 0; i < authoring.AppleGameObjects.Length; i++)
+            {
+                stoneBuffers.Add(
+                    new StoneBuffer() { Stone = GetEntity(authoring.AppleGameObjects[i], TransformUsageFlags.Dynamic) });
+            }
         }
     }
 }

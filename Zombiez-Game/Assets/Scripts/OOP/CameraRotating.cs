@@ -1,8 +1,8 @@
 using System;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 [Serializable]
 public class CameraRotating : IService, IInit, ILateUpdate
@@ -29,9 +29,10 @@ public class CameraRotating : IService, IInit, ILateUpdate
 
         Quaternion targetRot = Quaternion.Euler(playerLook.Look.y, playerLook.Look.x, 0f);
 
+        //float3 forward = CameraTransform.forward * 0.2f + CameraTransform.up * 0.2f;
+
         Vector3 targetPos = ServiceLocator.Instance.entityManager.GetComponentData<LocalToWorld>(bodyParts.Eyes).Position;
 
-        
         CameraTransform.SetPositionAndRotation(targetPos, targetRot);
     }
 }
